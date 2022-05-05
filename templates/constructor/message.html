@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+{#    <link rel="stylesheet" href="{% static 'constructor/css/style.css' %}">#}
+    <link rel="stylesheet" href="{% static 'constructor/css/message.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/admin" target="_blank">Административная панель</a>
+    </nav>
+    <section class="sections">
+        <section id="triggers">
+            <h3>Триггеры</h3>
+            {% for trigger in triggers %}
+{#                {{ trigger }}<br><br>#}
+                {% if trigger.text %}
+                    <div class="type_text">
+                        <div class="title">
+                            <h4>Текст</h4>
+                            <a href="/admin/constructor/trigger/{{ trigger.id }}/change/" class="edit" target="_blank">Редактировать</a>
+                        </div>
+                        <div class="text">{{ trigger.text }}</div>
+                    </div>
+                {% elif trigger.button %}
+                    <div class="type_button">
+                        <div class="title">
+                            <h4>Кнопка</h4>
+                            <a href="/admin/constructor/trigger/{{ trigger.id }}/change/" class="edit" target="_blank">Редактировать</a>
+                        </div>
+                        <div class="text">{{ trigger.button.text }}</div>
+                    </div>
+                {% elif trigger.message %}
+                    <div class="type_button">
+                        <div class="title">
+                            <h4>Сообщение</h4>
+                            <a href="/admin/constructor/trigger/{{ trigger.id }}/change/" class="edit" target="_blank">Редактировать</a>
+                        </div>
+                        <div class="text">{{ trigger.message.text }}</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </section>
+        <section id="message">
+            <h3>Сообщение</h3>
+            <div class="message">
+                <textarea readonly>{{ message.text }}</textarea>
+            </div>
+            <ul class="buttons">
+                {% for button in buttons %}
+                    {% if button.link %}
+                        <li class="button link"><a href="/admin/constructor/button/{{ button.id }}/change/" target="_blank">{{ button.text }}</a><a href="{{ button.link }}" target="_blank">Открыть</a></li>
+                    {% else %}
+                        <li class="button"><a href="/admin/constructor/button/{{ button.id }}/change/" target="_blank">{{ button.text }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+        <section id="next_message">
+            <h3>Следующее сообщение</h3>
+            {% if message_next_message %}
+                <a href="/message/{{ message_next_message.next_message.id }}" class="next_message">
+                    <b class="type">Сообщение</b>
+                    {{ message_next_message.next_message.text }}
+                </a>
+            {% endif %}
+            {% for list in buttons_next_buttons %}
+                {% for trigger in list %}
+                    <a href="/message/{{ trigger.next_message.id }}" class="next_message">
+                        <b class="type">{{ trigger.button.text }}</b>
+                        {{ trigger.next_message.text }}
+                    </a>
+                {% endfor %}
+            {% endfor %}
+        </section>
+    </section>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="{% static 'constructor/css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/admin" target="_blank">Административная панель</a>
+    </nav>
+    <section id="messages">
+        <div class="container">
+            {% for message in messages %}
+                <a href="message/{{ message.id }}" class="message" id="{{ message.id }}">
+                    {{ message.text }}
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>
