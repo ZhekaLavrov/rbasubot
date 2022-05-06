@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.auth_group</OriginalElement>
+  <nodes>
+    <node x="906.0" y="-138.0">86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_message</node>
+    <node x="912.5" y="-9.0">86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_button</node>
+    <node x="353.8665644171781" y="104.5">86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_callback</node>
+    <node x="572.8665644171781" y="82.5">86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_telegrammessage</node>
+    <node x="912.5" y="186.0">86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_trigger</node>
+    <node x="472.8665644171781" y="-120.5">86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_telegramuser</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_button" target="86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_message" relationship="REFERENCES">
+      <point x="0.0" y="-71.5" />
+      <point x="998.0" y="-30.0" />
+      <point x="950.0" y="-30.0" />
+      <point x="950.0" y="-40.0" />
+      <point x="952.0" y="-40.0" />
+      <point x="-46.0" y="38.5" />
+    </edge>
+    <edge source="86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_trigger" target="86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_message" relationship="REFERENCES">
+      <point x="-57.0" y="-71.5" />
+      <point x="941.0" y="160.0" />
+      <point x="902.0" y="160.0" />
+      <point x="902.0" y="-30.0" />
+      <point x="950.0" y="-30.0" />
+      <point x="950.0" y="-40.0" />
+      <point x="952.0" y="-40.0" />
+      <point x="-46.0" y="38.5" />
+    </edge>
+    <edge source="86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_callback" target="86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_telegramuser" relationship="REFERENCES">
+      <point x="-49.75" y="-82.5" />
+      <point x="403.6165644171781" y="62.5" />
+      <point x="448.3665644171781" y="62.5" />
+      <point x="448.3665644171781" y="42.5" />
+      <point x="526.8665644171781" y="42.5" />
+      <point x="-54.0" y="71.5" />
+    </edge>
+    <edge source="86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_telegrammessage" target="86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_telegramuser" relationship="REFERENCES">
+      <point x="-61.75" y="-104.5" />
+      <point x="634.6165644171781" y="62.5" />
+      <point x="448.3665644171781" y="62.5" />
+      <point x="448.3665644171781" y="42.5" />
+      <point x="526.8665644171781" y="42.5" />
+      <point x="-54.0" y="71.5" />
+    </edge>
+    <edge source="86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_trigger" target="86fa3c75-5151-442e-a4e9-49f22ef71e1c.TABLE:rbasubotdb.public.constructor_button" relationship="REFERENCES">
+      <point x="0.0" y="-71.5" />
+      <point x="0.0" y="71.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5266558966074314" showDependencies="false" x="908.5874233128834" y="352.0414110429447" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Columns</Category>
+    <Category>Comments</Category>
+    <Category>Key columns</Category>
+    <Category>Virtual foreign keys</Category>
+  </Categories>
+</Diagram>
+
