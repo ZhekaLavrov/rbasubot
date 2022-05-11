@@ -4,11 +4,12 @@ from django.db import models
 class Message(models.Model):
     text = models.TextField(
         help_text="Текст сообщения",
-        null=True
+        null=True,
+        verbose_name="Текст сообщения"
     )
 
     def __str__(self):
-        count_symbols = 110
+        count_symbols = 32
         if len(f"{self.text}") > count_symbols:
             return f"{self.text[:count_symbols]}..."
         else:
@@ -17,6 +18,7 @@ class Message(models.Model):
     class Meta:
         verbose_name = "Сообщение"
         verbose_name_plural = "Сообщения"
+        ordering = ["id"]
 
 
 class Button(models.Model):
@@ -57,23 +59,12 @@ class Button(models.Model):
         super(Button, self).save(*args, **kwargs)
 
     def __str__(self):
-        count_symbols = 110
-        if self.link:
-            text = f"{self.text} ({self.number}) -> {self.link} -> {self.message.__str__()}"
-            if len(text) > count_symbols:
-                return f"{text[:count_symbols]}..."
-            else:
-                return f"{text}"
-        else:
-            text = f"{self.text} ({self.number}) -> {self.message.__str__()}"
-            if len(text) > count_symbols:
-                return f"{text[:count_symbols]}..."
-            else:
-                return f"{text}"
+        return self.text
 
     class Meta:
         verbose_name = "Кнопка"
         verbose_name_plural = "Кнопки"
+        ordering = ["message", "id"]
 
 
 class Trigger(models.Model):
@@ -129,6 +120,7 @@ class Trigger(models.Model):
     class Meta:
         verbose_name = "Триггер"
         verbose_name_plural = "Триггеры"
+        ordering = ['id']
 
 
 class TelegramUser(models.Model):
@@ -166,6 +158,7 @@ class TelegramUser(models.Model):
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
+        ordering = ["user_id"]
 
     def __str__(self):
         if self.last_name:
@@ -210,6 +203,11 @@ class TelegramMessage(models.Model):
         blank=True
     )
 
+    class Meta:
+        verbose_name = "Telegram сообщение"
+        verbose_name_plural = "Telegram сообщения"
+        ordering = ["date"]
+
 
 class CallBack(models.Model):
     id = models.CharField(max_length=64, primary_key=True)
@@ -232,3 +230,8 @@ class CallBack(models.Model):
         default=None,
         blank=True
     )
+
+    class Meta:
+        verbose_name = "Telegram событие"
+        verbose_name_plural = "Telegram события"
+        ordering = ["date"]
