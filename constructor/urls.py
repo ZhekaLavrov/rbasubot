@@ -5,3 +5,4 @@ urlpatterns = [
     path('', views.index),
     path('message/<int:message_id>', views.message)
 ]
+

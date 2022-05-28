@@ -168,7 +168,7 @@ class TelegramUser(models.Model):
 
 
 class TelegramMessage(models.Model):
-    message_id = models.IntegerField(primary_key=True)
+    message_id = models.BigIntegerField(primary_key=True)
     from_user = models.ForeignKey(
         TelegramUser,
         on_delete=models.CASCADE,
@@ -234,4 +234,69 @@ class CallBack(models.Model):
     class Meta:
         verbose_name = "Telegram событие"
         verbose_name_plural = "Telegram события"
+        ordering = ["date"]
+
+
+class VkUser(models.Model):
+    user_id = models.BigIntegerField(
+        verbose_name="id пользователя ВКонтакте",
+        primary_key=True,
+        help_text="id пользователя ВКонтакте"
+    )
+    first_name = models.CharField(
+        verbose_name="Имя пользователя",
+        max_length=255,
+        help_text="Имя пользователя"
+    )
+    last_name = models.CharField(
+        verbose_name="Фамилия пользователя",
+        max_length=255,
+        help_text="Фамилия пользователя",
+        null=True,
+        default=None,
+        blank=True
+    )
+    is_bot = models.BooleanField(
+        default=False
+    )
+
+    class Meta:
+        verbose_name = "Пользователь ВКонтакте"
+        verbose_name_plural = "Пользователи ВКонтакте"
+        ordering = ["user_id"]
+
+    def __str__(self):
+        if self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        else:
+            return self.first_name
+
+
+class VkEvent(models.Model):
+    message_id = models.BigIntegerField(
+        verbose_name="id сообщения ВКонтакте",
+        help_text="id сообщения ВКонтакте",
+        primary_key=True
+    )
+    from_user = models.ForeignKey(
+        to=VkUser, on_delete=models.CASCADE, related_name="from_user",
+        verbose_name="От кого",
+        help_text="От кого"
+    )
+    to_user = models.ForeignKey(
+        to=VkUser, on_delete=models.CASCADE, related_name="to_user",
+        verbose_name="Кому",
+        help_text="Кому"
+    )
+    date = models.DateTimeField(
+        verbose_name="Время отправки",
+        help_text="Время отправки",
+        auto_now_add=True,
+        blank=True
+    )
+    text = models.TextField(verbose_name="Текст сообщения", help_text="Текст сообщения")
+
+    class Meta:
+        verbose_name = "Событие ВКонтакте"
+        verbose_name_plural = "События ВКонтакте"
         ordering = ["date"]
